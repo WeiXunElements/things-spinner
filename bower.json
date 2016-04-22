@@ -4,6 +4,7 @@
   "authors": [
     "Hatio Lab. <heartyoh@hatiolab.com>"
   ],
+  "description": "전역에서 사용 및 Control할 수 있는 Spinner개발.",
   "keywords": [
     "web-component",
     "polymer",
@@ -17,7 +18,8 @@
     "/test/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.2.0"
+    "polymer": "Polymer/polymer#^1.2.0",
+    "paper-spinner": "^1.1.1"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
