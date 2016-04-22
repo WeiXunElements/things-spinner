@@ -1,151 +1,83 @@
-<!--
-@license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-spinner/paper-spinner.html">
 
 <!--
-An element providing a solution to no problem in particular.
+`<things-spinner>`  
 
-Example:
+  Example
 
-    <things-spinner></things-spinner>
-
-Example:
-
-    <things-spinner>
-      <h2>Hello things-spinner</h2>
-    </things-spinner>
+        <things-spinner id="spinner"></things-spinner>
+        <paper-button color="green" id="spn-button" on-tap="clickSpinner">Toggle Spinner</paper-button>
+        <script>
+          function clickSpinner(e) {
+            var spinner = document.querySelector('#spinner');
+            spinner.loading= !spinner.loading;
+          }
+        </script>
 
 @demo demo/index.html
-@hero hero.svg
 -->
-
 <dom-module id="things-spinner">
+  <style>
+    #refresh {
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    #spinner {
+      background: #fff;
+      border-radius: 50%;
+      padding: 10px;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                  0 1px 5px 0 rgba(0, 0, 0, 0.12),
+                  0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      transition: transform 300ms cubic-bezier(0,0,0.2,1);
+      will-change: transform;
+    } 
+
+    #spinner.shrink {
+      transform: scale(0);
+    }
+  </style>
+
   <template>
-    <style>
-      :host {
-        display: block;
-        box-sizing: border-box;
-      }
-
-      .author img {
-        display: block;
-        float: left;
-        margin-right: 5px;
-        max-height: 100px;
-        max-width: 100px;
-      }
-    </style>
-
-    <h1>&lt;things-spinner&gt;</h1>
-    <content></content>
-    <p class="author">
-      <img src$="{{author.image}}">
-      Cheers,<br/>
-      <span class="name">{{author.name}}</span>
-    </p>
+    <template is="dom-if" if="{{loading}}">
+      <div id="refresh" class="fit layout vertical center-center">
+          <paper-spinner id ="spinner" active></paper-spinner>
+      </div>
+    </template>
   </template>
 
   <script>
-    Polymer({
-      is: 'things-spinner',
+      Polymer({
+        is: 'things-spinner',
 
-      properties: {
-        /**
-         * `fancy` indicates that the element should don a monocle and tophat,
-         * while checking its pocket watch.
-         */
-        fancy: Boolean,
-
-        /**
-         * Describes the author of the element, but is really just an excuse to
-         * show off JSDoc annotations.
-         *
-         * @type {{name: string, image: string}}
-         */
-        author: {
-          type: Object,
-          // Use `value` to provide a default value for a property, by setting it
-          // on your element's prototype.
-          //
-          // If you provide a function, as we do here, Polymer will call that
-          // _per element instance_.
-          //
-          // We do that to ensure that each element gets its own copy of the
-          // value, rather than having it shared across all instances (via the
-          // prototype).
-          value: function() {
-            return {
-              name:  'Dimitri Glazkov',
-              image: 'http://addyosmani.com/blog/wp-content/uploads/2013/04/unicorn.jpg',
-            };
+        properties: {
+          loading: {
+            type: Boolean,
+            value: false,
+            observer: '_loadingChanged'
           }
         },
-      },
 
-      // Element Lifecycle
+        ready: function(){
+          var spinnerElement = this.$.spinner;
+          if(spinnerElement) spinnerElement.active = this.loading;
+          document.addEventListener('_startSpinner', function(e){
+            this.loading = true;
+          }.bind(this));
 
-      ready: function() {
-        // `ready` is called after all elements have been configured, but
-        // propagates bottom-up. This element's children are ready, but parents
-        // are not.
-        //
-        // This is the point where you should make modifications to the DOM (when
-        // necessary), or kick off any processes the element wants to perform.
-      },
+          document.addEventListener('_stopSpinner', function(e){
+            this.loading = false;
+          }.bind(this));
+        },
 
-      attached: function() {
-        // `attached` fires once the element and its parents have been inserted
-        // into a document.
-        //
-        // This is a good place to perform any work related to your element's
-        // visual state or active behavior (measuring sizes, beginning animations,
-        // loading resources, etc).
-      },
+        _loadingChanged: function(loading) {
+          var spinnerElement = this.$.spinner;
+          if(spinnerElement) spinnerElement.active = loading;
+        }
 
-      detached: function() {
-        // The analog to `attached`, `detached` fires when the element has been
-        // removed from a document.
-        //
-        // Use this to clean up anything you did in `attached`.
-      },
-
-      // Element Behavior
-
-      /**
-       * Sometimes it's just nice to say hi.
-       *
-       * @param {string} greeting A positive greeting.
-       * @return {string} The full greeting.
-       */
-      sayHello: function(greeting) {
-        var response = greeting || 'Hello World!';
-        return 'things-spinner says, ' + response;
-      },
-
-      /**
-       * The `things-spinner-lasers` event is fired whenever `fireLasers` is called.
-       *
-       * @event things-spinner-lasers
-       * @detail {{sound: String}}
-       */
-
-      /**
-       * Attempt to destroy this element's enemies with a beam of light!
-       *
-       * Or, at least, dispatch an event in the vain hope that someone else will
-       * do the zapping.
-       */
-      fireLasers: function() {
-        this.fire('things-spinner-lasers', {sound: 'Pew pew!'});
-      }
-    });
+      });
   </script>
+
 </dom-module>

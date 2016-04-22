@@ -1,6 +1,6 @@
 # things-spinner
 
-An element providing a starting point for your own reusable Polymer elements.
+전역에서 사용 및 Control할 수 있는 Spinner개발
 
 
 ## Dependencies
@@ -31,31 +31,68 @@ Once running, you can preview your element at
 `http://localhost:8080/components/things-spinner/`, where `things-spinner` is the name of the directory containing it.
 
 
-## Testing Your Element
+## Example 1.Things spinner
+	<p class="paper-font-subhead">Things spinner</p>
+    <demo-snippet class="centered-demo">
+      <template>
+        <things-spinner id="thingsSpinner"></things-spinner>
+        <paper-button color="green" id="spn-button">Toggle Spinner</paper-button>
+        <script>
+          function toggleSpinner  (e) {
+            var spinner = document.querySelector('#thingsSpinner');
+            spinner.loading =! spinner.loading;
+          };
 
-Simply navigate to the `/test` directory of your element to run its tests. If
-you are using Polyserve: `http://localhost:8080/components/things-spinner/test/`
+          var spnButton = document.querySelector('#spn-button');
+          spnButton.addEventListener('tap', toggleSpinner);
+        </script>        
+      </template>
+    </demo-snippet>
 
-### web-component-tester
+## Example 2.Things spinner with behavior
+    <p class="paper-font-subhead">Things spinner behavior</p>
+    <demo-snippet class="centered-demo">
+      <template>
+        <things-spinner id="thingsSpinner"></things-spinner>
+        <paper-button color="green" id="behavior-button">Toggle Spinner</paper-button>
+        <script>
+          var spnButton = document.querySelector('#behavior-button');
+          spnButton.addEventListener('tap', toggleSpinnerWBehavior);
+          function toggleSpinnerWBehavior  (e) {
+            Things.SpinnerBehavior.toggleSpinner();
+          };
+        </script>        
+      </template>
+    </demo-snippet>
 
-The tests are compatible with [web-component-tester](https://github.com/Polymer/web-component-tester).
-Install it via:
-
-    npm install -g web-component-tester
-
-Then, you can run your tests on _all_ of your local browsers via:
-
-    wct
-
-#### WCT Tips
-
-`wct -l chrome` will only run tests in chrome.
-
-`wct -p` will keep the browsers alive after test runs (refresh to re-run).
-
-`wct test/some-file.html` will test only the files you specify.
-
-
-## Yeoman support
-
-If you'd like to use Yeoman to scaffold your element that's possible. The official [`generator-polymer`](https://github.com/yeoman/generator-polymer) generator has a [`seed`](https://github.com/yeoman/generator-polymer#seed) subgenerator.
+## Example 3.Things spinner behavior with custome element
+    <p class="paper-font-subhead">Things spinner behavior with custome element</p>
+    <demo-snippet class="centered-demo">
+      <template>
+        <things-spinner id="thingsSpinner"></things-spinner>
+        <spinner-controller></spinner-controller>
+      
+        <dom-module id="spinner-controller">
+          <template>
+            <style>
+              :host {
+                display: block;
+              }
+            </style>
+            <paper-button color="green" 
+                          id="behavior-button" 
+                          on-tap="toggleSpinner">
+                Toggle Spinner
+            </paper-button>
+          </template>
+          <script>
+            Polymer({
+              is: 'spinner-controller',
+              behaviors: [
+                Things.SpinnerBehavior
+              ]
+            });
+          </script>
+        </dom-module>
+      </template>
+    </demo-snippet>

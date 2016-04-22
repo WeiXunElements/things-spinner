@@ -1,0 +1,58 @@
+<!--
+`Things는 Window 변수이며 본 프램웍 자채 개발된 Behavior 전체가 해당 객체 Assign된다.`
+`Things.SpinnerBehavior`
+
+  Example
+        <things-spinner id="spinner"></things-spinner>
+
+
+@demo demo/index.html
+-->
+<script>
+
+window.Things = window.Things || {};
+
+Things.SpinnerBehavior = {
+  properties:{
+    spinnerState:{
+      type:Boolean,
+      value:false
+    }
+  },
+
+  /**
+   * Start spinner
+   */
+  startSpinner: function() {
+    if(!this.spinnerState) {
+      this.spinnerState = true;
+      var eventDetail = this;
+      var event = new CustomEvent('_startSpinner', { 'detail': eventDetail });
+      document.dispatchEvent(event);
+    }
+  },
+
+  /**
+   * Stop spinner
+   */
+  stopSpinner: function() {
+    if(this.spinnerState) {
+      this.spinnerState = false;
+      var eventDetail = this;
+      var event = new CustomEvent('_stopSpinner', { 'detail': eventDetail });
+      document.dispatchEvent(event);
+    }
+  },
+  /**
+   * toggle Spinner
+   */
+  toggleSpinner: function() {
+    if(!this.spinnerState) {
+      this.startSpinner();
+    }else{
+      this.stopSpinner();
+    }
+  },
+
+};
+</script>
