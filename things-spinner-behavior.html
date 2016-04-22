@@ -1,19 +1,20 @@
-<!--
-`Things는 Window 변수이며 본 프램웍 자채 개발된 Behavior 전체가 해당 객체 Assign된다.`
-`Things.SpinnerBehavior`
+<link rel="import" href="../polymer/polymer.html">
 
-  Example
-        <things-spinner id="spinner"></things-spinner>
-
-
-@demo demo/index.html
--->
 <script>
-
 window.Things = window.Things || {};
+
+/**
+ * `Things는 Window 변수이며 본 프램웍 자채 개발된 Behavior 전체가 해당 객체 Assign된다.`
+ * `Things.SpinnerBehavior`
+ * 
+ * @polymerBehavior Things.SpinnerBehavior
+ */
 
 Things.SpinnerBehavior = {
   properties:{
+    /**
+     * 스피너 상태 확인 변수
+     */
     spinnerState:{
       type:Boolean,
       value:false
@@ -21,7 +22,12 @@ Things.SpinnerBehavior = {
   },
 
   /**
-   * Start spinner
+   * startSpinner method가 호출될때 발생된다.
+   * @event _startSpinner
+   */
+  
+  /**
+   * 이벤트 _startSpinner를 발생시긴다.
    */
   startSpinner: function() {
     if(!this.spinnerState) {
@@ -31,10 +37,15 @@ Things.SpinnerBehavior = {
       document.dispatchEvent(event);
     }
   },
-
   /**
-   * Stop spinner
+   * stopSpinner method가 호출될때 발생된다.
+   * @event _stopSpinner
    */
+  
+  /**
+   * 이벤트 _stopSpinner 발생시긴다.
+   * 
+   * */
   stopSpinner: function() {
     if(this.spinnerState) {
       this.spinnerState = false;
@@ -43,8 +54,9 @@ Things.SpinnerBehavior = {
       document.dispatchEvent(event);
     }
   },
+
   /**
-   * toggle Spinner
+   * Spinner상태에 따라서 Spinner의 상태를 바꾸어 준다.
    */
   toggleSpinner: function() {
     if(!this.spinnerState) {
