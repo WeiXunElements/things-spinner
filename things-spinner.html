@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+
 <link rel="import" href="../paper-spinner/paper-spinner.html">
 
 <!--
@@ -7,7 +8,9 @@
   Example
 
         <things-spinner id="spinner"></things-spinner>
+
         <paper-button color="green" id="spn-button" on-tap="clickSpinner">Toggle Spinner</paper-button>
+        
         <script>
           function clickSpinner(e) {
             var spinner = document.querySelector('#spinner');
@@ -17,6 +20,7 @@
 
 @demo demo/index.html
 -->
+
 <dom-module id="things-spinner">
   <style>
     #refresh {
@@ -43,44 +47,51 @@
   <template>
     <template is="dom-if" if="{{loading}}">
       <div id="refresh" class="fit layout vertical center-center">
-          <paper-spinner id ="spinner" active></paper-spinner>
+        <paper-spinner id ="spinner" active></paper-spinner>
       </div>
     </template>
   </template>
 
   <script>
-      Polymer({
-        is: 'things-spinner',
+    Polymer({
+      is: 'things-spinner',
 
-        properties: {
-          /**
-           * Spinner를 보여주는 변수, true이면 active, false면 Disable
-           */
-          loading: {
-            type: Boolean,
-            value: false,
-            observer: '_loadingChanged'
-          }
-        },
-
-        ready: function(){
-          var spinnerElement = this.$.spinner;
-          if(spinnerElement) spinnerElement.active = this.loading;
-          document.addEventListener('_startSpinner', function(e){
-            this.loading = true;
-          }.bind(this));
-
-          document.addEventListener('_stopSpinner', function(e){
-            this.loading = false;
-          }.bind(this));
-        },
-
-        _loadingChanged: function(loading) {
-          var spinnerElement = this.$.spinner;
-          if(spinnerElement) spinnerElement.active = loading;
+      properties: {
+        /**
+         * Spinner를 보여주는 변수, true이면 active, false면 Disable
+         */
+        loading: {
+          type: Boolean,
+          value: false,
+          observer: 'loadingChanged'
         }
+      },
 
-      });
+      /**
+       * Life cycle - ready
+       */
+      ready: function() {
+        var spinnerElement = this.$.spinner;
+        if(spinnerElement) spinnerElement.active = this.loading;
+        
+        // 1. things-start-spinner event handler
+        document.addEventListener('things-start-spinner', function(e) {
+          this.loading = true;
+        }.bind(this));
+
+        // 2. things-stop-spinner event handler
+        document.addEventListener('things-stop-spinner', function(e) {
+          this.loading = false;
+        }.bind(this));
+      },
+
+      /**
+       * Loading 변수 변경시 ...
+       */
+      loadingChanged: function(loading) {
+        var spinnerElement = this.$.spinner;
+        if(spinnerElement) spinnerElement.active = loading;
+      }
+    });
   </script>
-
 </dom-module>

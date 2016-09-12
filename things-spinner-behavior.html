@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <script>
+
 window.Things = window.Things || {};
 
 /**
@@ -11,46 +12,47 @@ window.Things = window.Things || {};
  */
 
 Things.SpinnerBehavior = {
-  properties:{
+
+  properties: {
     /**
      * 스피너 상태 확인 변수
      */
-    spinnerState:{
-      type:Boolean,
-      value:false
+    spinnerState: {
+      type: Boolean,
+      value: false
     }
+
+    /**
+     * startSpinner method가 호출될때 발생된다.
+     * @event things-start-spinner
+     */
+
+    /**
+     * stopSpinner method가 호출될때 발생된다.
+     * @event things-stop-spinner
+     */
   },
 
-  /**
-   * startSpinner method가 호출될때 발생된다.
-   * @event _startSpinner
-   */
   
   /**
-   * 이벤트 _startSpinner를 발생시긴다.
+   * 이벤트 things-start-spinner를 발생시긴다.
    */
   startSpinner: function() {
     if(!this.spinnerState) {
       this.spinnerState = true;
-      var eventDetail = this;
-      var event = new CustomEvent('_startSpinner', { 'detail': eventDetail });
+      var event = new CustomEvent('things-start-spinner', { 'detail': this });
       document.dispatchEvent(event);
     }
   },
-  /**
-   * stopSpinner method가 호출될때 발생된다.
-   * @event _stopSpinner
-   */
   
   /**
-   * 이벤트 _stopSpinner 발생시긴다.
+   * 이벤트 things-stop-spinner 발생시긴다.
    * 
    * */
   stopSpinner: function() {
     if(this.spinnerState) {
       this.spinnerState = false;
-      var eventDetail = this;
-      var event = new CustomEvent('_stopSpinner', { 'detail': eventDetail });
+      var event = new CustomEvent('things-stop-spinner', { 'detail': this });
       document.dispatchEvent(event);
     }
   },
@@ -61,10 +63,9 @@ Things.SpinnerBehavior = {
   toggleSpinner: function() {
     if(!this.spinnerState) {
       this.startSpinner();
-    }else{
+    } else {
       this.stopSpinner();
     }
-  },
-
+  }
 };
 </script>
