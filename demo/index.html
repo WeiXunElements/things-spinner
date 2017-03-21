@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../paper-button/paper-button.html">
-  
+
   </head>
   <body unresolved>
 
@@ -37,7 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           var spnButton = document.querySelector('#spn-button');
           spnButton.addEventListener('tap', toggleSpinner);
-        </script>        
+        </script>
       </template>
     </demo-snippet>
 
@@ -52,7 +52,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           function toggleSpinnerWBehavior  (e) {
             Things.SpinnerBehavior.toggleSpinner();
           };
-        </script>        
+        </script>
       </template>
     </demo-snippet>
 
@@ -61,7 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <template>
         <things-spinner id="thingsSpinner"></things-spinner>
         <spinner-controller></spinner-controller>
-      
+
         <dom-module id="spinner-controller">
           <template>
             <style>
@@ -69,8 +69,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 display: block;
               }
             </style>
-            <paper-button color="green" 
-                          id="behavior-button" 
+            <paper-button color="green"
+                          id="behavior-button"
                           on-tap="toggleSpinner">
                 Toggle Spinner
             </paper-button>

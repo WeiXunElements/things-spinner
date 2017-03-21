@@ -3,18 +3,18 @@
 <link rel="import" href="../paper-spinner/paper-spinner.html">
 
 <!--
-`<things-spinner>`  
+`<things-spinner>`
 
   Example
 
         <things-spinner id="spinner"></things-spinner>
 
         <paper-button color="green" id="spn-button" on-tap="clickSpinner">Toggle Spinner</paper-button>
-        
+
         <script>
           function clickSpinner(e) {
             var spinner = document.querySelector('#spinner');
-            spinner.loading= !spinner.loading;
+            spinner.loading = !spinner.loading;
           }
         </script>
 
@@ -37,7 +37,7 @@
                   0 3px 1px -2px rgba(0, 0, 0, 0.2);
       transition: transform 300ms cubic-bezier(0,0,0.2,1);
       will-change: transform;
-    } 
+    }
 
     #spinner.shrink {
       transform: scale(0);
@@ -73,7 +73,7 @@
       ready: function() {
         var spinnerElement = this.$.spinner;
         if(spinnerElement) spinnerElement.active = this.loading;
-        
+
         // 1. things-start-spinner event handler
         document.addEventListener('things-start-spinner', function(e) {
           this.loading = true;
@@ -86,7 +86,9 @@
       },
 
       /**
-       * Loading 변수 변경시 ...
+       * Loading 변수 변경시
+       *
+       * @param  {Boolean} loading
        */
       loadingChanged: function(loading) {
         var spinnerElement = this.$.spinner;
