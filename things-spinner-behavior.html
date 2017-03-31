@@ -16,8 +16,9 @@ Things.SpinnerBehavior = {
   properties: {
     /**
      * 스피너 상태 확인 변수
+     * *******
+     * @type {Boolean}
      */
-
     spinnerState: {
       type: Boolean,
       value: false
@@ -25,11 +26,13 @@ Things.SpinnerBehavior = {
 
     /**
      * startSpinner method가 호출될때 document level에서 발생된다.
+     * ******
      * @event things-start-spinner
      */
 
     /**
      * stopSpinner method가 호출될때 document level에서 발생된다.
+     * ******
      * @event things-stop-spinner
      */
   },
@@ -37,6 +40,7 @@ Things.SpinnerBehavior = {
 
   /**
    * 이벤트 things-start-spinner를 발생시킨다.
+   * ******
    */
 
   startSpinner: function() {
@@ -49,8 +53,8 @@ Things.SpinnerBehavior = {
 
   /**
    * 이벤트 things-stop-spinner 발생시킨다.
-   *
-   * */
+   ******
+   */
   stopSpinner: function() {
     if(this.spinnerState) {
       this.spinnerState = false;
@@ -61,6 +65,7 @@ Things.SpinnerBehavior = {
 
   /**
    * Spinner상태에 따라서 Spinner의 상태를 바꾸어 준다.
+   * ******
    */
   toggleSpinner: function() {
     if(!this.spinnerState) {

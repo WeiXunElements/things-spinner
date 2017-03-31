@@ -127,6 +127,8 @@
       properties: {
         /**
          * Spinner를 보여주는 변수, true이면 active, false면 Hidden
+         * ******
+         * @type {Boolean}
          */
         loading: {
           type: Boolean,
@@ -137,6 +139,7 @@
 
       /**
        * Life cycle - ready
+       * ******
        */
       ready: function() {
         var spinnerElement = this.$.spinner;
@@ -155,7 +158,7 @@
 
       /**
        * Loading 변수 변경시
-       *
+       ********
        * @param  {Boolean} loading
        */
       loadingChanged: function(loading) {
