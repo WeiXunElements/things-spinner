@@ -1,6 +1,6 @@
 # things-spinner
 
-## 진행중인 작업을 표현하기 위한 컴포넌트, 전역 Event제공
+## This is a component for representing work in progress and provides a global event.
 
 ## Example 1.Things spinner
 
@@ -25,7 +25,7 @@
 
 ******
 
-## Example 2.Things spinner behavior를 통한 spinner 적용
+## Example 2.Apply spinner through Things spinner behavior.
 
 ``` html
       <p class="paper-font-subhead">Things spinner behavior</p>
@@ -46,7 +46,7 @@
 
 ******
 
-## Example 3.Things spinner behavior로 신규 spinner Controller 생성.
+## Example 3.Create a new spinner Controller with Things spinner behavior.
 
   ```html
       <p class="paper-font-subhead">Things spinner behavior with custome element</p>
@@ -86,8 +86,7 @@
 
 ## Dependencies
 
-Element dependencies are managed via [Bower](http://bower.io/). You can
-install that via:
+Element dependencies are managed via [Bower](http://bower.io/). You can install that via:
 
     npm install -g bower
 
@@ -108,4 +107,4 @@ And you can run it via:
     polymer serve
 
 Once running, you can preview your element at
-`http://localhost:8080/components/things-alarm/`, where `things-alarm` is the name of the directory containing it.
+`http://localhost:8080/components/things-spinner/`, where `things-spinner` is the name of the directory containing it.
