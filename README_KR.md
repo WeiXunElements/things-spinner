@@ -2,7 +2,7 @@
 
 ## 이는 진행 중인 작업을 표현하기 위한 컴포넌트이며 전역 Event를 제공한다.
 
-## Example 1.Things spinner
+## Example 1. Things spinner
 
 ``` html
   	<p class="paper-font-subhead">Things spinner</p>
@@ -25,7 +25,7 @@
 
 ******
 
-## Example 2.Things spinner behavior를 통한 spinner 적용
+## Example 2. Things spinner behavior를 통한 spinner 적용
 
 ``` html
       <p class="paper-font-subhead">Things spinner behavior</p>
@@ -46,7 +46,7 @@
 
 ******
 
-## Example 3.Things spinner behavior로 신규 spinner Controller 생성
+## Example 3. Things spinner behavior로 신규 spinner Controller 생성
 
   ```html
       <p class="paper-font-subhead">Things spinner behavior with custome element</p>

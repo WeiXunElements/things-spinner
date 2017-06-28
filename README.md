@@ -2,7 +2,7 @@
 
 ## This is a component for representing work in progress and provides a global event.
 
-## Example 1.Things spinner
+## Example 1. Things spinner
 
 ``` html
   	<p class="paper-font-subhead">Things spinner</p>
@@ -25,7 +25,7 @@
 
 ******
 
-## Example 2.Apply spinner through Things spinner behavior.
+## Example 2. Apply spinner through Things spinner behavior.
 
 ``` html
       <p class="paper-font-subhead">Things spinner behavior</p>
@@ -46,7 +46,7 @@
 
 ******
 
-## Example 3.Create a new spinner Controller with Things spinner behavior.
+## Example 3. Create a new spinner Controller with Things spinner behavior.
 
   ```html
       <p class="paper-font-subhead">Things spinner behavior with custome element</p>
