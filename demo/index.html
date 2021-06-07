@@ -1,34 +1,32 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" />
     <title>things-spinner Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
 
-    <link rel="import" href="../things-spinner.html">
-    <link rel="import" href="../things-spinner-behavior.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../paper-button/paper-button.html">
-
+    <link rel="import" href="../things-spinner.html" />
+    <link rel="import" href="../things-spinner-behavior.html" />
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html" />
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html" />
+    <link rel="import" href="../../paper-button/paper-button.html" />
   </head>
   <body unresolved>
-
     <p class="paper-font-subhead">Things spinner</p>
     <demo-snippet class="centered-demo">
       <template>
         <things-spinner id="thingsSpinner"></things-spinner>
         <paper-button color="green" id="spn-button">Toggle Spinner</paper-button>
         <script>
-          function toggleSpinner  (e) {
+          function toggleSpinner(e) {
             var spinner = document.querySelector('#thingsSpinner');
-            spinner.loading =! spinner.loading;
-          };
+            spinner.loading = !spinner.loading;
+          }
 
           var spnButton = document.querySelector('#spn-button');
           spnButton.addEventListener('tap', toggleSpinner);
@@ -44,9 +42,9 @@ Copyright © HatioLab Inc. All rights reserved.
         <script>
           var spnButton = document.querySelector('#behavior-button');
           spnButton.addEventListener('tap', toggleSpinnerWBehavior);
-          function toggleSpinnerWBehavior  (e) {
+          function toggleSpinnerWBehavior(e) {
             Things.SpinnerBehavior.toggleSpinner();
-          };
+          }
         </script>
       </template>
     </demo-snippet>
@@ -64,23 +62,16 @@ Copyright © HatioLab Inc. All rights reserved.
                 display: block;
               }
             </style>
-            <paper-button color="green"
-                          id="behavior-button"
-                          on-tap="toggleSpinner">
-                Toggle Spinner
-            </paper-button>
+            <paper-button color="green" id="behavior-button" on-tap="toggleSpinner"> Toggle Spinner </paper-button>
           </template>
           <script>
             Polymer({
               is: 'spinner-controller',
-              behaviors: [
-                Things.SpinnerBehavior
-              ]
+              behaviors: [Things.SpinnerBehavior],
             });
           </script>
         </dom-module>
       </template>
     </demo-snippet>
-
   </body>
 </html>

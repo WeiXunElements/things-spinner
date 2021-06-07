@@ -1,82 +1,79 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer.html" />
 
 <script>
+  window.Things = window.Things || {};
 
-window.Things = window.Things || {};
+  /**
+   * Things는 Window 변수이며 본 프램웍 자채 개발된 Behavior 전체가 해당 객체 Assign된다.
+   * `Things.SpinnerBehavior`
+   *
+   * @polymerBehavior Things.SpinnerBehavior
+   */
 
-/**
- * Things는 Window 변수이며 본 프램웍 자채 개발된 Behavior 전체가 해당 객체 Assign된다.
- * `Things.SpinnerBehavior`
- *
- * @polymerBehavior Things.SpinnerBehavior
- */
+  Things.SpinnerBehavior = {
+    properties: {
+      /**
+       * 스피너 상태 확인 변수
+       * *******
+       * @type {Boolean}
+       */
+      spinnerState: {
+        type: Boolean,
+        value: false,
+      },
 
-Things.SpinnerBehavior = {
+      /**
+       * startSpinner method가 호출될때 document level에서 발생된다.
+       * ******
+       * @event things-start-spinner
+       */
 
-  properties: {
+      /**
+       * stopSpinner method가 호출될때 document level에서 발생된다.
+       * ******
+       * @event things-stop-spinner
+       */
+    },
+
     /**
-     * 스피너 상태 확인 변수
-     * *******
-     * @type {Boolean}
-     */
-    spinnerState: {
-      type: Boolean,
-      value: false
-    }
-
-    /**
-     * startSpinner method가 호출될때 document level에서 발생된다.
+     * 이벤트 things-start-spinner를 발생시킨다.
      * ******
-     * @event things-start-spinner
      */
+
+    startSpinner: function () {
+      if (!this.spinnerState) {
+        this.spinnerState = true;
+        var event = new CustomEvent('things-start-spinner', { detail: this });
+        document.dispatchEvent(event);
+      }
+    },
 
     /**
-     * stopSpinner method가 호출될때 document level에서 발생된다.
-     * ******
-     * @event things-stop-spinner
+     * 이벤트 things-stop-spinner 발생시킨다.
+     ******
      */
-  },
+    stopSpinner: function () {
+      if (this.spinnerState) {
+        this.spinnerState = false;
+        var event = new CustomEvent('things-stop-spinner', { detail: this });
+        document.dispatchEvent(event);
+      }
+    },
 
-
-  /**
-   * 이벤트 things-start-spinner를 발생시킨다.
-   * ******
-   */
-
-  startSpinner: function() {
-    if(!this.spinnerState) {
-      this.spinnerState = true;
-      var event = new CustomEvent('things-start-spinner', { 'detail': this });
-      document.dispatchEvent(event);
-    }
-  },
-
-  /**
-   * 이벤트 things-stop-spinner 발생시킨다.
-   ******
-   */
-  stopSpinner: function() {
-    if(this.spinnerState) {
-      this.spinnerState = false;
-      var event = new CustomEvent('things-stop-spinner', { 'detail': this });
-      document.dispatchEvent(event);
-    }
-  },
-
-  /**
-   * Spinner상태에 따라서 Spinner의 상태를 바꾸어 준다.
-   * ******
-   */
-  toggleSpinner: function() {
-    if(!this.spinnerState) {
-      this.startSpinner();
-    } else {
-      this.stopSpinner();
-    }
-  }
-};
+    /**
+     * Spinner상태에 따라서 Spinner의 상태를 바꾸어 준다.
+     * ******
+     */
+    toggleSpinner: function () {
+      if (!this.spinnerState) {
+        this.startSpinner();
+      } else {
+        this.stopSpinner();
+      }
+    },
+  };
 </script>

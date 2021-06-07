@@ -1,10 +1,10 @@
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer.html" />
 
-<link rel="import" href="../paper-spinner/paper-spinner.html">
+<link rel="import" href="../paper-spinner/paper-spinner.html" />
 
 <!--
 ## 진행중인 작업을 표현하기 위한 컴포넌트, 전역 Event제공
@@ -104,10 +104,8 @@ Copyright © HatioLab Inc. All rights reserved.
       background: #fff;
       border-radius: 50%;
       padding: 10px;
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                  0 1px 5px 0 rgba(0, 0, 0, 0.12),
-                  0 3px 1px -2px rgba(0, 0, 0, 0.2);
-      transition: transform 300ms cubic-bezier(0,0,0.2,1);
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
       will-change: transform;
     }
 
@@ -119,7 +117,7 @@ Copyright © HatioLab Inc. All rights reserved.
   <template>
     <template is="dom-if" if="{{loading}}">
       <div id="refresh" class="fit layout vertical center-center">
-        <paper-spinner id ="spinner" active></paper-spinner>
+        <paper-spinner id="spinner" active></paper-spinner>
       </div>
     </template>
   </template>
@@ -137,27 +135,33 @@ Copyright © HatioLab Inc. All rights reserved.
         loading: {
           type: Boolean,
           value: false,
-          observer: 'loadingChanged'
-        }
+          observer: 'loadingChanged',
+        },
       },
 
       /**
        * Life cycle - ready
        * ******
        */
-      ready: function() {
+      ready: function () {
         var spinnerElement = this.$.spinner;
-        if(spinnerElement) spinnerElement.active = this.loading;
+        if (spinnerElement) spinnerElement.active = this.loading;
 
         // 1. things-start-spinner event handler
-        document.addEventListener('things-start-spinner', function(e) {
-          this.loading = true;
-        }.bind(this));
+        document.addEventListener(
+          'things-start-spinner',
+          function (e) {
+            this.loading = true;
+          }.bind(this)
+        );
 
         // 2. things-stop-spinner event handler
-        document.addEventListener('things-stop-spinner', function(e) {
-          this.loading = false;
-        }.bind(this));
+        document.addEventListener(
+          'things-stop-spinner',
+          function (e) {
+            this.loading = false;
+          }.bind(this)
+        );
       },
 
       /**
@@ -165,10 +169,10 @@ Copyright © HatioLab Inc. All rights reserved.
        ********
        * @param  {Boolean} loading
        */
-      loadingChanged: function(loading) {
+      loadingChanged: function (loading) {
         var spinnerElement = this.$.spinner;
-        if(spinnerElement) spinnerElement.active = loading;
-      }
+        if (spinnerElement) spinnerElement.active = loading;
+      },
     });
   </script>
 </dom-module>

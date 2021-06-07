@@ -1,8 +1,8 @@
 {
   "name": "things-spinner",
-  "version": "v2.2.0",
+  "version": "v2.2.1",
   "authors": [
-    "Hatio Lab. <heartyoh@hatiolab.com>"
+    "Shenzhen Weixun"
   ],
   "description": "전역에서 사용 및 Control할 수 있는 Spinner개발.",
   "keywords": [
@@ -11,8 +11,6 @@
     "seed"
   ],
   "main": "things-spinner.html",
-  "license": "http://license.hatiolab.com/EULA",
-  "homepage": "http://elements.hatiolab.com/",
   "ignore": [
     "/.*",
     "/test/"
